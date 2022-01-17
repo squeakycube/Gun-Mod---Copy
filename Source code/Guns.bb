@@ -360,12 +360,9 @@ Function UpdateGuns()
 										n\HP% = n\HP% - 20
 										temp = 2
 										Exit
-									EndIf
-								EndIf
-								If n\NPCtype = NPCtypeTentacle
-									If PickedEntity() = n\HitBox
-										DebugLog "D found"
-										n\HP% = n\HP% - 20
+									ElseIf PickedEntity() = n\HitBoxHead
+										DebugLog "D found + Head"
+										n\HP% = n\HP% - 35
 										temp = 2
 										Exit
 									EndIf

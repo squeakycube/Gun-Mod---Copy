@@ -1,16 +1,4 @@
-﻿*Gun Mod
-		Egor - ("Chumnaya Karkusa")
-		Dylan - ("squeakycube ")
-
-	Fuck SCPCB Multiplayer, yall never added my shit so I added it here, fuck you!
-
-*Special Thanks
-		Scott Kunze - ("The Friendly Engineer")
-		Nikita Sidorov ("Jabka")
-		
-
-
-*Programmers
+﻿*Programmers
 
 		Joonas Rikkonen ("Regalis")
 		CommanderMark
@@ -126,6 +114,18 @@
 		Nikita Sidorov ("Jabka")
 		Turtle Sandwich/Catnipbuddy
 		/v/ and everyone in the SCP-CB forum
+
+*Gun Mod
+		Egor - ("Chumnaya Karkusa")
+		Dylan/Jennifer - ("squeakycube ")
+
+	Fuck SCPCB Multiplayer, yall never added my shit so I added it here, fuck you!
+
+*Special Thanks
+		Scott Kunze - ("The Friendly Engineer")
+		Nikita Sidorov ("Jabka")
+		
+
 
 
 *The game is based on the works of the SCP Foundation community.

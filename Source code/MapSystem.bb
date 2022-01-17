@@ -1820,7 +1820,7 @@ Type Rooms
 	Field MaxX#, MaxY#, MaxZ#
 End Type 
 
-Const gridsz%=19 ;Same size as the main map itself (better for the map creator)
+Const gridsz%=29 ;Same size as the main map itself (better for the map creator)
 Type Grids
 	Field grid%[gridsz*gridsz]
 	Field angles%[gridsz*gridsz]
@@ -2581,52 +2581,63 @@ Function FillRoom(r.Rooms)
 			;[End Block]
 		Case "room079"
 			;[Block]
-			d = CreateDoor(r\zone, r\x, -448.0*RoomScale, r\z + 1136.0 * RoomScale, 0, r, False,True, 4)
+			d = CreateDoor(r\zone, r\x, -448.0*RoomScale, r\z + 1136.0 * RoomScale, 0, r, False,True, 2)
 			d\dir = 1 : d\AutoClose = False : d\open = False
 			PositionEntity(d\buttons[1], r\x + 224.0 * RoomScale, -250*RoomScale, r\z + 918.0 * RoomScale, True)
 			;TurnEntity(d\buttons[0],0,-90,0,True)
 			PositionEntity(d\buttons[0], r\x - 240.0 * RoomScale, -250*RoomScale, r\z + 1366.0 * RoomScale, True)
 			;TurnEntity(d\buttons[1],0, 90,0,True)	
 			
-			r\RoomDoors[0] = CreateDoor(r\zone, r\x + 1456.0*RoomScale, -448.0*RoomScale, r\z + 976.0 * RoomScale, 0, r, False, True, 3)
+			r\RoomDoors[0] = CreateDoor(r\zone, r\x + 1456.0*RoomScale, -448.0*RoomScale, r\z + 976.0 * RoomScale, 0, r, False, True, 2)
 			r\RoomDoors[0]\dir = 1 : r\RoomDoors[0]\AutoClose = False : r\RoomDoors[0]\open = False
 			PositionEntity(r\RoomDoors[0]\buttons[1], r\x + 1760.0 * RoomScale, -250*RoomScale, r\z + 1236.0 * RoomScale, True)
 			TurnEntity(r\RoomDoors[0]\buttons[0],0,-90-90,0,True)
 			PositionEntity(r\RoomDoors[0]\buttons[0], r\x + 1760.0 * RoomScale, -240*RoomScale, r\z + 740.0 * RoomScale, True)
 			TurnEntity(r\RoomDoors[0]\buttons[1],0, 90-90,0,True)
 			
-			CreateDoor(0, r\x + 1144.0*RoomScale, -448.0*RoomScale, r\z + 704.0 * RoomScale, 90, r, False, False, -1)
+			CreateDoor(0, r\x + 876.0*RoomScale, -708.0*RoomScale,  r\z + 176.0 * RoomScale, 0, r, False, False, 2)
 			
-			r\Objects[0] = LoadAnimMesh_Strict("GFX\map\079.b3d")
-			ScaleEntity(r\Objects[0], 1.3, 1.3, 1.3, True)
-			PositionEntity (r\Objects[0], r\x + 1856.0*RoomScale, -560.0*RoomScale, r\z-672.0*RoomScale, True)
+			r\Objects[0] = CreateCube;(n\obj)
+			;r\Objects[0] = LoadAnimMesh_Strict("GFX\map\079.b3d")
+			ScaleEntity(r\Objects[0], 0.15, 0.15, 0.15, True)
+			PositionEntity (r\Objects[0], r\x + 1608.0*RoomScale, -700.0*RoomScale, r\z - 224.0*RoomScale, True)
 			EntityParent(r\Objects[0], r\obj)
 			TurnEntity r\Objects[0],0,180,0,True
+			;EntityAlpha r\Objects[0],0.4
+			;EntityAlpha r\Objects[0],0.4
+			;HideEntity r\Objects[0]
 			
-			r\Objects[1] = CreateSprite(r\Objects[0])
-			SpriteViewMode(r\Objects[1],2)
-			PositionEntity(r\Objects[1], 0.082, 0.119, 0.010)
-			ScaleSprite(r\Objects[1],0.18*0.5,0.145*0.5)
-			TurnEntity(r\Objects[1],0,13.0,0)
-			MoveEntity r\Objects[1], 0,0,-0.022
-			EntityTexture (r\Objects[1],OldAiPics(0))
+			r\Objects[5] = CreatePivot(r\obj)
+			PositionEntity(r\Objects[5], r\x + 1608.0 * RoomScale, r\y -308.0 * RoomScale, r\z - 224.0 * RoomScale, True)
 			
-			HideEntity r\Objects[1]
+			it = CreateItem("Level 3 Key Card", "key3", r\x + 1088.0 * RoomScale, r\y -376.0 * RoomScale, r\z + 544.0 * RoomScale)
+            EntityParent(it\collider, r\obj)
 			
-			r\Objects[2] = LoadAnimMesh_Strict("GFX\map\079.b3d")
-			ScaleEntity(r\Objects[2], 1.3, 1.3, 1.3, True)
-			PositionEntity (r\Objects[2], r\x + 1184.0*RoomScale, -448.0*RoomScale, r\z+1792.0*RoomScale, True)
-			EntityParent(r\Objects[2], r\obj)
-			TurnEntity r\Objects[2],0,180,0,True
+			;r\Objects[1] ;= CreateSprite(r\Objects[0])
+			;SpriteViewMode(r\Objects[1],2)
+			;PositionEntity(r\Objects[1], 0.082, 0.119, 0.010)
+			;ScaleSprite(r\Objects[1],0.18*0.5,0.145*0.5)
+			;TurnEntity(r\Objects[1],0,13.0,0)
+			;MoveEntity r\Objects[1], 0,0,-0.022
+			;EntityTexture (r\Objects[1],OldAiPics(0))
+			
+			;HideEntity r\Objects[1]
+			;HideEntity r\Objects[2]
+			
+			;r\Objects[2] = LoadAnimMesh_Strict("GFX\map\079.b3d")
+			;ScaleEntity(r\Objects[2], 1.3, 1.3, 1.3, True)
+			;PositionEntity (r\Objects[2], r\x + 1184.0*RoomScale, -448.0*RoomScale, r\z+1792.0*RoomScale, True)
+			;EntityParent(r\Objects[2], r\obj)
+			;TurnEntity r\Objects[2],0,180,0,True
 			
 			
-			PositionEntity (r\Objects[3], r\x + 0.0*RoomScale, + 0.0*RoomScale, r\z-672.0*RoomScale, True)
+			;PositionEntity (r\Objects[4], r\x + 1556.0*RoomScale, - 104.0*RoomScale, r\z-308.0*RoomScale, True)
 		;EndIf
 			
-			de.Decals = CreateDecal(3,  r\x + 1184.0*RoomScale, -448.0*RoomScale+0.01, r\z+1792.0*RoomScale,90,Rnd(360),0)
-			de\Size = 0.5
-			ScaleSprite(de\obj, de\Size,de\Size)
-			EntityParent de\obj, r\obj
+			;de.Decals = CreateDecal(3,  r\x + 1184.0*RoomScale, -448.0*RoomScale+0.01, r\z+1792.0*RoomScale,90,Rnd(360),0)
+			;de\Size = 0.5
+			;ScaleSprite(de\obj, de\Size,de\Size)
+			;EntityParent de\obj, r\obj
 			;[End Block]
 		Case "checkpoint1"
 			;[Block]
@@ -2766,7 +2777,7 @@ Function FillRoom(r.Rooms)
 			;FreeEntity(d\buttons[0]) : d\buttons[0]=0
 			;FreeEntity(d\buttons[1]) : d\buttons[1]=0
 			
-			it = CreateItem("Level 1 Key Card", "key1", r\x - 914.0 * RoomScale, r\y + 137.0 * RoomScale, r\z + 61.0 * RoomScale)
+			it = CreateItem("Level 2 Key Card", "key2", r\x - 914.0 * RoomScale, r\y + 137.0 * RoomScale, r\z + 61.0 * RoomScale)
 			EntityParent(it\collider, r\obj)
 			
 			it = CreateItem("S-NAV 300 Navigator", "nav", r\x - 312.0 * RoomScale, r\y + 264.0 * RoomScale, r\z + 176.0 * RoomScale)
@@ -2977,6 +2988,24 @@ Function FillRoom(r.Rooms)
 			it = CreateItem("Quarter", "25ct", r\x-447.0*RoomScale, r\y-334.0*RoomScale, r\z+36.0*RoomScale)
 			EntityParent(it\collider, r\obj)
 			it = CreateItem("Quarter", "25ct", r\x+1409.0*RoomScale, r\y-334.0*RoomScale, r\z-732.0*RoomScale)
+			EntityParent(it\collider, r\obj)
+			;[End Block]
+		Case "PC15"
+			;[Block]
+			;scp-294
+			it = CreateItem("cup", "cup", r\x-508.0*RoomScale, -187*RoomScale, r\z+284.0*RoomScale, 240,175,70)
+			EntityParent(it\collider, r\obj) : it\name = "Cup of Orange Juice"
+			
+			it = CreateItem("cup", "cup", r\x+1412 * RoomScale, -187*RoomScale, r\z-716.0 * RoomScale, 87,62,45)
+			EntityParent(it\collider, r\obj) : it\name = "Cup of Coffee"
+			
+			it = CreateItem("Empty Cup", "emptycup", r\x-540*RoomScale, -187*RoomScale, r\z+124.0*RoomScale)
+			EntityParent(it\collider, r\obj)
+			
+			it = CreateItem("Quarter", "25ct", r\x-447.0*RoomScale, r\y-334.0*RoomScale, r\z+400.0*RoomScale)
+			EntityParent(it\collider, r\obj)
+			
+			it = CreateItem("First Aid Kit", "firstaid", r\x+688.0*RoomScale, r\y+224.0*RoomScale, r\z-732.0*RoomScale)
 			EntityParent(it\collider, r\obj)
 			;[End Block]
 		Case "room2nuke"
@@ -4829,6 +4858,8 @@ Function FillRoom(r.Rooms)
 			
 			;[End Block]
 			
+			
+			
 			;[End Block]
 		Case "room2test1074"
 			;[Block]
@@ -4958,6 +4989,37 @@ Function FillRoom(r.Rooms)
 			EntityAlpha r\Objects[14],0.0
 			
 			
+			;[End Block]
+			
+		Case "room2k"
+			;[Block]
+			;r\RoomDoors[0] = CreateDoor(r\zone,r\x,r\y,r\z - 528.0 * RoomScale,0,r,False,False,6)
+			
+			d = CreateDoor(r\zone, r\x + 1.0 * RoomScale, 0.0, r\z - 528.0 * RoomScale, 180, r, False, False, 0, "1940")
+			PositionEntity(d\buttons[0], r\x - 148.0 * RoomScale, EntityY(d\buttons[0],True), EntityZ(d\buttons[0],True),True)
+			PositionEntity(d\buttons[1], r\x - 132.0 * RoomScale, EntityY(d\buttons[1],True), EntityZ(d\buttons[1],True),True)		
+			d\AutoClose = False : d\open = False	
+			
+			it = CreateItem("Level 2 Key Card", "key2", r\x + 216.0 * RoomScale, r\y + 176.0 * RoomScale, r\z - 48.0 * RoomScale)
+			EntityParent(it\collider, r\obj)
+			
+			it = CreateItem("AK-47", "ak", r\x + 200.0 * RoomScale, r\y + 196.0 * RoomScale, r\z + 56.0 * RoomScale)
+			EntityParent(it\collider, r\obj)
+			
+			sc.SecurityCams = CreateSecurityCam(r\x-256.0*RoomScale, r\y+384.0*RoomScale, r\z+640.0*RoomScale, r)
+			sc\angle = 180
+			sc\turn = 45
+			TurnEntity(sc\CameraObj, 20, 0, 0)
+			;[End Block]
+		Case "room1sl"
+			;[Block]
+			it = CreateItem("Reminder!", "paper", r\x -28.0 * RoomScale, r\y + 176.0 * RoomScale, r\z -83.0 * RoomScale)
+			EntityParent(it\collider, r\obj)
+			
+			sc.SecurityCams = CreateSecurityCam(r\x-256.0*RoomScale, r\y+384.0*RoomScale, r\z+640.0*RoomScale, r)
+			sc\angle = 180
+			sc\turn = 45
+			TurnEntity(sc\CameraObj, 20, 0, 0)
 			;[End Block]
 		Case "pocketdimension"
 			;[Block]
@@ -7534,11 +7596,15 @@ Function CreateMap()
 	
 	;zone 3  --------------------------------------------------------------------------------------------------
 	
-	MapRoom(ROOM1, Room1Amount[0]+Room1Amount[1]+Room1Amount[2]-2) = "exit1"
-	MapRoom(ROOM1, Room1Amount[0]+Room1Amount[1]+Room1Amount[2]-1) = "gateaentrance"
+	MapRoom(ROOM1, Room1Amount[0]+Room1Amount[1]+Room1Amount[2]-1) = "exit1"
+	MapRoom(ROOM1, Room1Amount[0]+Room1Amount[1]+Room1Amount[2]-2) = "gateaentrance"
 	MapRoom(ROOM1, Room1Amount[0]+Room1Amount[1]) = "room1lifts"
-	
-	MapRoom(ROOM1, Room1Amount[0]+Room1Amount[1]+Room1Amount[2]-3) = "room079"
+	MapRoom(ROOM1, Room1Amount[0]+Room1Amount[1]+Room1Amount[2]-3) = "room2k"
+	MapRoom(ROOM1, Room1Amount[0]+Room1Amount[1]+Room1Amount[2]-4) = "room1sl"
+	MapRoom(ROOM1, Room1Amount[0]+Room1Amount[1]+Room1Amount[2]-5) = "CONRoom"
+	MapRoom(ROOM1, Room1Amount[0]+Room1Amount[1]+Room1Amount[2]-6) = "EPT"
+	MapRoom(ROOM1, Room1Amount[0]+Room1Amount[1]+Room1Amount[2]-7) = "room079"
+	MapRoom(ROOM1, Room1Amount[0]+Room1Amount[1]+Room1Amount[2]-8) = "PC15"							;Needs Textures, medikits and items and needs to be come a room1 room
 	
 	min_pos = Room2Amount[0]+Room2Amount[1]
 	max_pos = Room2Amount[0]+Room2Amount[1]+Room2Amount[2]-1		
@@ -7549,20 +7615,44 @@ Function CreateMap()
 	SetRoom("room2servers2", ROOM2, min_pos+Floor(0.4*Room2Amount[2]),min_pos,max_pos)	
 	SetRoom("room2offices", ROOM2, min_pos+Floor(0.45*Room2Amount[2]),min_pos,max_pos)
 	SetRoom("room2offices4", ROOM2, min_pos+Floor(0.5*Room2Amount[2]),min_pos,max_pos)	
-	SetRoom("room860", ROOM2, min_pos+Floor(0.6*Room2Amount[2]),min_pos,max_pos)
 	SetRoom("medibay", ROOM2, min_pos+Floor(0.7*Float(Room2Amount[2])),min_pos,max_pos)
 	SetRoom("room2poffices2", ROOM2, min_pos+Floor(0.8*Room2Amount[2]),min_pos,max_pos)
 	SetRoom("room2offices2", ROOM2, min_pos+Floor(0.9*Float(Room2Amount[2])),min_pos,max_pos)
+	;SetRoom("DGRoom", ROOM2, min_pos+Floor(0.9*Float(Room2Amount[2])),min_pos,max_pos)				;Needs Guard
+	SetRoom("EZServerpipe", ROOM2, min_pos+Floor(0.9*Float(Room2Amount[2])),min_pos,max_pos)
+	SetRoom("BL", ROOM2, min_pos+Floor(0.9*Float(Room2Amount[2])),min_pos,max_pos)
+	SetRoom("EZClosets", ROOM2, min_pos+Floor(0.9*Float(Room2Amount[2])),min_pos,max_pos)
+	SetRoom("Room2GBoffices", ROOM2, min_pos+Floor(0.9*Float(Room2Amount[2])),min_pos,max_pos)
+	;SetRoom("tight", ROOM2, min_pos+Floor(0.9*Float(Room2Amount[2])),min_pos,max_pos)				;too tight and needs to be a 4 room
+	;963																							;Broken and 963 needs to be reworked
+	;SetRoom("SNGLO", ROOM2, min_pos+Floor(0.9*Float(Room2Amount[2])),min_pos,max_pos)				;Needs Doors
+	SetRoom("EZpipe", ROOM2, min_pos+Floor(0.9*Float(Room2Amount[2])),min_pos,max_pos)				;Rotate in cbre
+	;SetRoom("PC", ROOM2, min_pos+Floor(0.9*Float(Room2Amount[2])),min_pos,max_pos)					;Needs Doors at the ends
+	;SetRoom("FO", ROOM2, min_pos+Floor(0.9*Float(Room2Amount[2])),min_pos,max_pos) 				;Needs white monitors and doors
+	;SetRoom("DeadPlants", ROOM2, min_pos+Floor(0.9*Float(Room2Amount[2])),min_pos,max_pos)	
+	SetRoom("2noffices", ROOM2, min_pos+Floor(0.9*Float(Room2Amount[2])),min_pos,max_pos)	;Missing Soil Textures
+	;SetRoom("2noffices", ROOM2, min_pos+Floor(0.7*Float(Room2Amount[2])),min_pos,max_pos) 			;This needs to be rotated in cbre and have its lightmaps fixed or maybe cause I set it to a 2C room im just a dumbass
 	
 	MapRoom(ROOM2C, Room2CAmount[0]+Room2CAmount[1]) = "room2ccont"	
-	MapRoom(ROOM2C, Room2CAmount[0]+Room2CAmount[1]+1) = "lockroom2"		
+	MapRoom(ROOM2C, Room2CAmount[0]+Room2CAmount[1]+1) = "lockroom2"	
+	MapRoom(ROOM2C, Room2CAmount[0]+Room2CAmount[1]+2) = "Room2Cxdoor"
 	
 	MapRoom(ROOM3, Room3Amount[0]+Room3Amount[1]+Floor(0.3*Float(Room3Amount[2]))) = "room3servers"
-	MapRoom(ROOM3, Room3Amount[0]+Room3Amount[1]+Floor(0.7*Float(Room3Amount[2]))) = "room3servers2"
-	MapRoom(ROOM3, Room3Amount[0]+Room3Amount[1]) = "room3gw"
-	MapRoom(ROOM3, Room3Amount[0]+Room3Amount[1]+Floor(0.5*Float(Room3Amount[2]))) = "room3offices"
+	MapRoom(ROOM3, Room3Amount[0]+Room3Amount[1]+1+Floor(0.7*Float(Room3Amount[2]))) = "room3servers2"
+	MapRoom(ROOM3, Room3Amount[0]+Room3Amount[1]+2) = "room3gw"
+	MapRoom(ROOM3, Room3Amount[0]+Room3Amount[1]+3+Floor(0.5*Float(Room3Amount[2]))) = "room3offices"
+	;Room3Tight																						;Same problem as 4 needs to be stretched
+	;Room4Broken fan																				;Missing Textures
 	
 	MapRoom(ROOM1, Room1Amount[0]+Room1Amount[1]+Room1Amount[2]-2) = "start"
+	
+	;MapRoom(ROOM4, Room4Amount[0]+Room4Amount[1]) = "Ezinfo"										;Room is to TIGHT needs room for buttons, try changing it to a 2C room
+	;MapRoom(ROOM4, Room4Amount[0]+Room4Amount[1]) = "room4z3UpBright"								;Needs Doors
+	;MapRoom(ROOM4, Room4Amount[0]+Room4Amount[1]) = "room4z3UpDark"									;Needs Doors
+	
+	;----------------------- Scrapped --------------------------------
+	
+		;MapRoom(ROOM3, Room3Amount[0]+Room3Amount[1]+Floor(0.5*Float(Room3Amount[2]))) = "room3EZLowStorage" ;Can walk through glass and missing textures
 	
 	;----------------------- luodaan kartta --------------------------------
 	
@@ -8852,6 +8942,6 @@ End Function
 
 
 ;~IDEal Editor Parameters:
-;~F#107D
-;~B#1285
+;~F#109A
+;~B#12A2
 ;~C#Blitz3D

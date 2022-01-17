@@ -3,15 +3,18 @@
 Const MAXACHIEVEMENTS=37
 Dim Achievements%(MAXACHIEVEMENTS)
 
-Const Achv008%=0, Achv012%=1, Achv035%=2, Achv049%=3, Achv055=4,  Achv079%=5, Achv096%=6, Achv106%=7, Achv148%=8, AchvkilledMTF=9
-Const Achv294%=10, Achv372%=11, Achv420%=12, Achv427=13, Achv500%=14, Achv513%=15, Achv714%=16, Achv789%=17, Achv860%=18, Achv895%=19
-Const Achv914%=20, Achv939%=21, Achv966%=22, Achv970=23, Achv1025%=24, Achv1048=25, Achv1123=26
+Const Achv008%=0, Achv012%=1, Achv049%=2, Achv055=3,Achv096%=4, Achv106%=5, AchvkilledMTF=6
+Const Achv294%=7, Achv420%=8, Achv500%=9
 
-Const AchvMaynard%=27, AchvHarp%=28, AchvSNAV%=29, AchvOmni%=30, AchvConsole%=31, AchvTesla%=32, AchvPD%=33
+Const AchvMaynard%=10, AchvHarp%=11, AchvConsole%=12, AchvTesla%=13
 
-Const Achv1162% = 34, Achv1499% = 35
+Const AchvKeter% = 14
 
-Const AchvKeter% = 36
+Const Achv789% = 15
+
+Const AchvAntOpt% = 16
+
+Const AchvPeaceKeeper% = 17
 
 Global UsedConsole
 
@@ -175,7 +178,6 @@ End Function
 
 
 
-
 ;~IDEal Editor Parameters:
-;~F#31#48
+;~F#34#4B
 ;~C#Blitz3D

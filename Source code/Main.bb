@@ -997,12 +997,14 @@ Function UpdateConsole()
 					;[End Block]
 				Case "sanic"
 					;[Block]
+					If Curr173\IsDead = True Then
 					SuperMan = Not SuperMan
 					If SuperMan = True Then
 						CreateConsoleMsg("GOTTA GO FAST")
 					Else
 						CreateConsoleMsg("WHOA SLOW DOWN")
 					EndIf
+				EndIf
 					;[End Block]
 				Case "scp-420-j","420","weed"
 					;[Block]
@@ -4129,7 +4131,22 @@ Function DrawCredits()
         CurrSave = ""
         FlushKeys()
 	EndIf
-    
+	
+	If Curr173\IsDead = False Then
+		If Contained106 = False Then
+			;If Curr008\IsDead = False
+				;If Curr049\IsDead = False
+					;If CurrMTF\IsDead = False
+						;If Curr066\IsDead = False
+			GiveAchievement(AchvPeaceKeeper)
+						;EndIf
+					;EndIf
+				;EndIf
+			;EndIf
+		EndIf
+	EndIf
+
+	
 End Function
 
 ;[Block]
@@ -5010,6 +5027,8 @@ Function DrawGUI()
 			FreeImage SelectedScreen\img : SelectedScreen\img = 0
 			SelectedScreen = Null
 			MouseUp1 = False
+			HoldingGun = 0
+			EqquipedGun = Null
 		EndIf
 	EndIf
 	
@@ -5020,6 +5039,8 @@ Function DrawGUI()
 		SelectedItem = Null
 		
 		If shouldDrawHUD Then
+			HoldingGun = 0
+			EqquipedGun = Null
 			pvt = CreatePivot()
 			PositionEntity pvt, EntityX(ClosestButton,True),EntityY(ClosestButton,True),EntityZ(ClosestButton,True)
 			RotateEntity pvt, 0, EntityYaw(ClosestButton,True)-180,0
@@ -5028,10 +5049,13 @@ Function DrawGUI()
 			PointEntity Camera, ClosestButton
 			FreeEntity pvt	
 			
+			;HoldingGun = 0
+			
 			CameraProject(Camera, EntityX(ClosestButton,True),EntityY(ClosestButton,True)+MeshHeight(ButtonOBJ)*0.015,EntityZ(ClosestButton,True))
 			projY# = ProjectedY()
 			CameraProject(Camera, EntityX(ClosestButton,True),EntityY(ClosestButton,True)-MeshHeight(ButtonOBJ)*0.015,EntityZ(ClosestButton,True))
 			scale# = (ProjectedY()-projy)/462.0
+			
 			
 			x = GraphicWidth/2-ImageWidth(KeypadHUD)*scale/2
 			y = GraphicHeight/2-ImageHeight(KeypadHUD)*scale/2		
@@ -12484,5 +12508,5 @@ Function RotateEntity90DegreeAngles(entity%)
 End Function
 
 ;~IDEal Editor Parameters:
-;~B#1250#14CD#1D71
+;~B#1261#14E5#1D89
 ;~C#Blitz3D
