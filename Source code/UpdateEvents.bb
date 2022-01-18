@@ -6898,6 +6898,12 @@ Function UpdateEvents()
 					EndIf
 				End If
 				;[End Block]
+			Case "2noffices"
+				;[Block]
+				If e <> Null Then
+					DebugLog Test
+				EndIf
+				;[End Block]
 			Case "tunnel2smoke"
 				;[Block]
 				If PlayerRoom = e\room Then
@@ -9260,6 +9266,7 @@ Function UpdateEndings()
 							e\room\NPC[0] = CreateNPC(NPCtypeApache, e\room\x, 100.0, e\room\z)
 							e\room\NPC[0]\State = 1
 							
+							;Change to sniper later
 							e\room\NPC[1] = CreateNPC(NPCtypeGuard, EntityX(e\room\Objects[4],True),EntityY(e\room\Objects[4],True)+0.2,EntityZ(e\room\Objects[4],True))
 							e\room\NPC[1]\State = 0
 							e\room\NPC[1]\State2 = 10
@@ -10224,5 +10231,5 @@ End Function
 
 ;~IDEal Editor Parameters:
 ;~F#A23
-;~B#10E6#1DE0
+;~B#10E6#1DE6
 ;~C#Blitz3D

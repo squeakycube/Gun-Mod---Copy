@@ -388,7 +388,7 @@ Function UpdateGuns()
 										Exit
 									EndIf
 								EndIf
-								If n\NPCtype = NPCtype939
+								If n\NPCtype = NPCtypeApache
 									If PickedEntity() = n\HitBox
 										DebugLog "D found"
 										n\HP% = n\HP% - 20

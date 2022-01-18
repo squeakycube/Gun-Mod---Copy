@@ -2276,6 +2276,24 @@ Function FillRoom(r.Rooms)
 			;EndIf
 			
 			;[End Block]
+		Case "2noffices"
+			;[Block]
+			;d = CreateDoor(r\zone, r\x - 736.0 * RoomScale, 0, r\z - 104.0 * RoomScale, 0, r, True)
+			;d\timer = 70 * 5 : d\AutoClose = False : d\open = False
+			
+			EntityParent(d\buttons[0], 0)
+			PositionEntity(d\buttons[0], r\x - 288.0 * RoomScale, 0.7, r\z - 640.0 * RoomScale)
+			EntityParent(d\buttons[0], r\obj)
+			
+			d2 = CreateDoor(r\zone, r\x + 240.0 * RoomScale, 0, r\z + 10.0 * RoomScale, 90, r, True)
+			d2\timer = 70 * 5 : d2\AutoClose = False: d2\open = False
+			EntityParent(d2\buttons[0], 0)
+			;PositionEntity(d2\buttons[0], r\x + 640.0 * RoomScale, 0.7, r\z + 288.0 * RoomScale)
+			;RotateEntity (d2\buttons[0], 0, 90, 0)
+			EntityParent(d2\buttons[0], r\obj)
+			
+			FreeEntity(d2\buttons[1]) : d2\buttons[1] = 0
+			;[End Block]
 		Case "lockroom2"
 			;[Block]
 			For i = 0 To 5
@@ -2472,7 +2490,7 @@ Function FillRoom(r.Rooms)
 			RotateEntity r\RoomDoors[4]\buttons[1],0,r\angle-90,0,True
 			PositionEntity(r\RoomDoors[4]\buttons[0], r\x, 7.0, r\z, True)		
 			
-			;k�yt�v�n takaosa
+			;k?yt?v?n takaosa
 			r\Objects[3] = CreatePivot()
 			PositionEntity(r\Objects[3], r\x-7680.0*RoomScale, 10992.0*RoomScale, r\z-27048.0*RoomScale, True)
 			EntityParent r\Objects[3], r\obj
@@ -2528,7 +2546,7 @@ Function FillRoom(r.Rooms)
 			PositionEntity(r\Objects[11], r\x+2816.0*RoomScale, 11024.0*RoomScale, r\z-2816.0*RoomScale, True)
 			EntityParent r\Objects[11], r\obj
 			
-			;r\Objects[12] = 682:n k�si
+			;r\Objects[12] = 682:n k?si
 			
 			;"valvomon" takaovi
 			r\RoomDoors[5] = CreateDoor(0, r\x+3248.0*RoomScale, 9856.0*RoomScale, r\z+6400.0*RoomScale, 0, r, False, False, 0, "ABCD")
@@ -2561,6 +2579,8 @@ Function FillRoom(r.Rooms)
 			r\Objects[19] = CreatePivot()
 			PositionEntity(r\Objects[19], r\x+3808.0*RoomScale, 12320.0*RoomScale, r\z-13568.0*RoomScale, True)
 			EntityParent r\Objects[19], r\obj			
+			
+			;Killable NPCs
 			
 			;[End Block]
 		Case "roompj"
@@ -2597,12 +2617,12 @@ Function FillRoom(r.Rooms)
 			
 			CreateDoor(0, r\x + 876.0*RoomScale, -708.0*RoomScale,  r\z + 176.0 * RoomScale, 0, r, False, False, 2)
 			
-			r\Objects[0] = CreateCube;(n\obj)
+			;r\Objects[0] = CreateCube;(n\obj)
 			;r\Objects[0] = LoadAnimMesh_Strict("GFX\map\079.b3d")
-			ScaleEntity(r\Objects[0], 0.15, 0.15, 0.15, True)
-			PositionEntity (r\Objects[0], r\x + 1608.0*RoomScale, -700.0*RoomScale, r\z - 224.0*RoomScale, True)
-			EntityParent(r\Objects[0], r\obj)
-			TurnEntity r\Objects[0],0,180,0,True
+			;ScaleEntity(r\Objects[0], 0.15, 0.15, 0.15, True)
+			;PositionEntity (r\Objects[0], r\x + 1608.0*RoomScale, -700.0*RoomScale, r\z - 224.0*RoomScale, True)
+			;EntityParent(r\Objects[0], r\obj)
+			;TurnEntity r\Objects[0],0,180,0,True
 			;EntityAlpha r\Objects[0],0.4
 			;EntityAlpha r\Objects[0],0.4
 			;HideEntity r\Objects[0]
@@ -7595,16 +7615,17 @@ Function CreateMap()
 	
 	
 	;zone 3  --------------------------------------------------------------------------------------------------
-	
+	MapRoom(ROOM1, Room1Amount[0]+Room1Amount[1]) = "gateaentrance"
 	MapRoom(ROOM1, Room1Amount[0]+Room1Amount[1]+Room1Amount[2]-1) = "exit1"
-	MapRoom(ROOM1, Room1Amount[0]+Room1Amount[1]+Room1Amount[2]-2) = "gateaentrance"
-	MapRoom(ROOM1, Room1Amount[0]+Room1Amount[1]) = "room1lifts"
+	MapRoom(ROOM1, Room1Amount[0]+Room1Amount[1]+Room1Amount[2]-2) = "room1lifts"
+	;MapRoom(ROOM1, Room1Amount[0]+Room1Amount[1]) = "room1lifts"
 	MapRoom(ROOM1, Room1Amount[0]+Room1Amount[1]+Room1Amount[2]-3) = "room2k"
 	MapRoom(ROOM1, Room1Amount[0]+Room1Amount[1]+Room1Amount[2]-4) = "room1sl"
 	MapRoom(ROOM1, Room1Amount[0]+Room1Amount[1]+Room1Amount[2]-5) = "CONRoom"
 	MapRoom(ROOM1, Room1Amount[0]+Room1Amount[1]+Room1Amount[2]-6) = "EPT"
 	MapRoom(ROOM1, Room1Amount[0]+Room1Amount[1]+Room1Amount[2]-7) = "room079"
 	MapRoom(ROOM1, Room1Amount[0]+Room1Amount[1]+Room1Amount[2]-8) = "PC15"							;Needs Textures, medikits and items and needs to be come a room1 room
+	;MapRoom(ROOM1, Room1Amount[0]+Room1Amount[1]+Room1Amount[2]-9) = "Room1EndLB"					;Spawns in HCZ
 	
 	min_pos = Room2Amount[0]+Room2Amount[1]
 	max_pos = Room2Amount[0]+Room2Amount[1]+Room2Amount[2]-1		
@@ -7630,8 +7651,8 @@ Function CreateMap()
 	;SetRoom("PC", ROOM2, min_pos+Floor(0.9*Float(Room2Amount[2])),min_pos,max_pos)					;Needs Doors at the ends
 	;SetRoom("FO", ROOM2, min_pos+Floor(0.9*Float(Room2Amount[2])),min_pos,max_pos) 				;Needs white monitors and doors
 	;SetRoom("DeadPlants", ROOM2, min_pos+Floor(0.9*Float(Room2Amount[2])),min_pos,max_pos)	
-	SetRoom("2noffices", ROOM2, min_pos+Floor(0.9*Float(Room2Amount[2])),min_pos,max_pos)	;Missing Soil Textures
-	;SetRoom("2noffices", ROOM2, min_pos+Floor(0.7*Float(Room2Amount[2])),min_pos,max_pos) 			;This needs to be rotated in cbre and have its lightmaps fixed or maybe cause I set it to a 2C room im just a dumbass
+		;Missing Soil Textures
+	SetRoom("2noffices", ROOM2, min_pos+Floor(0.7*Float(Room2Amount[2])),min_pos,max_pos) 			;This needs to be rotated in cbre and have its lightmaps fixed or maybe cause I set it to a 2C room im just a dumbass
 	
 	MapRoom(ROOM2C, Room2CAmount[0]+Room2CAmount[1]) = "room2ccont"	
 	MapRoom(ROOM2C, Room2CAmount[0]+Room2CAmount[1]+1) = "lockroom2"	
@@ -8942,6 +8963,6 @@ End Function
 
 
 ;~IDEal Editor Parameters:
-;~F#109A
-;~B#12A2
+;~F#10AE
+;~B#12B6
 ;~C#Blitz3D

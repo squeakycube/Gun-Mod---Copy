@@ -408,7 +408,7 @@ Function CreateNPC.NPCs(NPCtype%, x#, y#, z#)
 				PositionEntity(Light1, 1.65*i, 1.17, -0.25)
 				
 				Local lightsprite = CreateSprite(n\obj)
-				PositionEntity(lightsprite, 1.65*i, 1.17, 0, -0.25)
+				PositionEntity(lightsprite, 0.65*i, 0.17, 0, -0.25)
 				ScaleSprite(lightsprite, 0.13, 0.13)
 				EntityTexture(lightsprite, LightSpriteTex(0))
 				EntityBlend (lightsprite, 3)
@@ -417,6 +417,14 @@ Function CreateNPC.NPCs(NPCtype%, x#, y#, z#)
 			
 			temp# = 0.6
 			ScaleEntity n\obj, temp, temp, temp
+			
+			n\HP = 1500
+			
+			n\HitBox% = CreateCube(n\obj)
+			ScaleEntity n\HitBox%,MeshWidth(n\obj)/1.75,MeshHeight(n\obj)/0.75,MeshDepth(n\obj)/1.5
+			PositionEntity n\HitBox,0.0,-0.045,0.5,True
+			EntityAlpha n\HitBox%,0.4
+			EntityPickMode n\HitBox%,2
 			;[End Block]
 		Case NPCtypeTentacle
 			;[Block]
@@ -3458,6 +3466,24 @@ If n\HP% < 1 Then
 				
 				PositionEntity(n\obj, EntityX(n\Collider), EntityY(n\Collider), EntityZ(n\Collider))
 				RotateEntity n\obj, EntityPitch(n\Collider), EntityYaw(n\Collider), EntityRoll(n\Collider), True
+				
+				
+				If n\HP% < 1 Then
+                    ;AnimateNPC(n, 155, 682, 1.5, False)
+                    n\Idle = True
+                    n\IsDead = True
+					GiveAchievement(AchvkilledMTF)
+					n\State = 4
+                EndIf
+                
+                ;If n\HP% < 1
+                  ;  If n\Frame > 26
+                  ;      SetNPCFrame(n, 2)
+                  ;  EndIf
+                  ;      ;    n\State = 10
+                 ;   n\Idle = True
+                ;    n\IsDead = True
+               ; EndIf
 				;[End Block]
 			Case NPCtypeTentacle
 				;[Block]
@@ -7567,5 +7593,5 @@ End Function
 
 
 ;~IDEal Editor Parameters:
-;~B#1CD#123F#12D9#1373#152B#1636#17F7#1853
+;~B#1D5#1259#12F3#138D#1545#1650#1811#186D
 ;~C#Blitz3D
